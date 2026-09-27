@@ -1,1 +1,24 @@
-document.addEventListener('DOMContentLoaded',()=>{const forms=document.querySelectorAll('form[data-confirm]');forms.forEach(f=>f.addEventListener('submit',e=>{if(!confirm(f.dataset.confirm))e.preventDefault()}));const search=document.querySelector('#packageSearch');if(search){search.addEventListener('input',()=>{const q=search.value.toLowerCase();document.querySelectorAll('.package-card').forEach(c=>c.style.display=c.innerText.toLowerCase().includes(q)?'block':'none')})}});
+document.addEventListener('DOMContentLoaded', () => {
+    const forms = document.querySelectorAll('form[data-confirm]');
+    
+    forms.forEach(form => {
+        form.addEventListener('submit', event => {
+            if (!confirm(form.dataset.confirm)) {
+                event.preventDefault();
+            }
+        });
+    });
+
+    const searchInput = document.querySelector('#packageSearch');
+    
+    if (searchInput) {
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.toLowerCase();
+            
+            document.querySelectorAll('.package-card').forEach(card => {
+                const text = card.innerText.toLowerCase();
+                card.style.display = text.includes(query) ? 'block' : 'none';
+            });
+        });
+    }
+});
